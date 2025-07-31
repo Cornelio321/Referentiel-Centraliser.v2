@@ -7,7 +7,34 @@
         </div>
     </div>
 
-    <h4 class="text-center mb-4 fw-bold">Admin Panel</h4>
+    @php
+        $userRole = Auth::user()->role ?? 'lecteur';
+        $panelTitle = match($userRole) {
+            'admin' => 'Admin Panel',
+            'editeur' => 'Éditeur Panel',
+            'lecteur' => 'Lecteur Panel',
+            default => 'Dashboard'
+        };
+    @endphp
+
+    <h4 class="text-center mb-4 fw-bold">{{ $panelTitle }}</h4>
+
+    <!-- Informations utilisateur -->
+    <div class="user-info mb-3 p-2 rounded" style="background-color: rgba(220, 53, 69, 0.1);">
+        <div class="d-flex align-items-center">
+            <div class="user-avatar me-2">
+                <i class="fas fa-user-circle fa-2x text-danger"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name text-truncate" style="max-width: 140px; font-weight: 600; font-size: 14px;">
+                    {{ Auth::user()->name }}
+                </div>
+                <div class="user-role" style="font-size: 12px; color: #6c757d;">
+                    <span class="badge badge-role">{{ ucfirst($userRole) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <ul class="nav flex-column">
         @foreach ($menuItems as $item)
@@ -62,6 +89,19 @@
                 </li>
             @endif
         @endforeach
+        
+        <!-- Lien de déconnexion toujours présent -->
+        @if (!collect($menuItems)->contains(fn($item) => isset($item['action']) && $item['action'] === 'logout'))
+        <hr class="my-3" style="border-color: #dc3545;">
+        <li class="nav-item">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-link bg-transparent border-0 w-100 text-start logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Se déconnecter
+                </button>
+            </form>
+        </li>
+        @endif
     </ul>
 </div>
 
@@ -103,6 +143,19 @@
     text-shadow: 1px 1px 2px rgba(220, 53, 69, 0.2);
     border-bottom: 2px solid #dc3545;
     padding-bottom: 10px;
+}
+
+.user-info {
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.badge-role {
+    background-color: #dc3545;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .sidebar-custom .nav-link {
