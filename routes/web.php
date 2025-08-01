@@ -34,7 +34,7 @@ Route::middleware(['auth', 'password.changed'])->group(function () {
     Route::get('/lecteur/dashboard', [LecteurDashboardController::class, 'index'])->name('lecteur.dashboard');
 
     // Users routes
-    Route::get('/users', function() { return 'Users list'; })->name('users.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
