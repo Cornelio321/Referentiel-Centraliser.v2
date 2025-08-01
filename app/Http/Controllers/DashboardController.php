@@ -29,6 +29,16 @@ class DashboardController extends Controller
                         'route' => 'users.create',
                         'icon' => 'fas fa-user-plus'
                     ],
+                    [
+                        'label' => 'Rôles et Permissions',
+                        'route' => 'users.roles',
+                        'icon' => 'fas fa-user-shield'
+                    ],
+                    [
+                        'label' => 'Utilisateurs Bloqués',
+                        'route' => 'users.blocked',
+                        'icon' => 'fas fa-user-slash'
+                    ],
                 ],
             ],
             [
@@ -56,22 +66,96 @@ class DashboardController extends Controller
                         'route' => 'documents.archives',
                         'icon' => 'fas fa-archive'
                     ],
+                    [
+                        'label' => 'Médias',
+                        'route' => 'media.index',
+                        'icon' => 'fas fa-images'
+                    ],
                 ],
             ],
             [
-                'label' => 'Rapports',
+                'label' => 'E-Commerce',
+                'icon' => 'fas fa-shopping-cart',
+                'route' => 'ecommerce.index',
+                'children' => [
+                    [
+                        'label' => 'Produits',
+                        'route' => 'products.index',
+                        'icon' => 'fas fa-box'
+                    ],
+                    [
+                        'label' => 'Commandes',
+                        'route' => 'orders.index',
+                        'icon' => 'fas fa-shopping-bag'
+                    ],
+                    [
+                        'label' => 'Clients',
+                        'route' => 'customers.index',
+                        'icon' => 'fas fa-user-friends'
+                    ],
+                    [
+                        'label' => 'Inventaire',
+                        'route' => 'inventory.index',
+                        'icon' => 'fas fa-warehouse'
+                    ],
+                    [
+                        'label' => 'Promotions',
+                        'route' => 'promotions.index',
+                        'icon' => 'fas fa-percent'
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Communication',
+                'icon' => 'fas fa-comments',
+                'route' => 'communication.index',
+                'children' => [
+                    [
+                        'label' => 'Messages',
+                        'route' => 'messages.index',
+                        'icon' => 'fas fa-envelope'
+                    ],
+                    [
+                        'label' => 'Newsletter',
+                        'route' => 'newsletter.index',
+                        'icon' => 'fas fa-newspaper'
+                    ],
+                    [
+                        'label' => 'Chat Support',
+                        'route' => 'support.chat',
+                        'icon' => 'fas fa-comment-dots'
+                    ],
+                    [
+                        'label' => 'FAQ',
+                        'route' => 'faq.index',
+                        'icon' => 'fas fa-question-circle'
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Rapports & Analytics',
                 'icon' => 'fas fa-chart-bar',
                 'route' => 'reports.index',
                 'children' => [
+                    [
+                        'label' => 'Dashboard Analytics',
+                        'route' => 'analytics.dashboard',
+                        'icon' => 'fas fa-chart-pie'
+                    ],
                     [
                         'label' => 'Rapport Mensuel',
                         'route' => 'reports.monthly',
                         'icon' => 'fas fa-calendar-alt'
                     ],
                     [
-                        'label' => 'Statistiques',
-                        'route' => 'reports.statistics',
+                        'label' => 'Statistiques Ventes',
+                        'route' => 'reports.sales',
                         'icon' => 'fas fa-chart-line'
+                    ],
+                    [
+                        'label' => 'Analytics Utilisateurs',
+                        'route' => 'analytics.users',
+                        'icon' => 'fas fa-users-cog'
                     ],
                     [
                         'label' => 'Export de Données',
@@ -101,6 +185,11 @@ class DashboardController extends Controller
                         'icon' => 'fas fa-play-circle'
                     ],
                     [
+                        'label' => 'Programmation',
+                        'route' => 'scripts.schedule',
+                        'icon' => 'fas fa-clock'
+                    ],
+                    [
                         'label' => 'Historique',
                         'route' => 'scripts.history',
                         'icon' => 'fas fa-history'
@@ -113,7 +202,7 @@ class DashboardController extends Controller
                 'route' => 'system.index',
                 'children' => [
                     [
-                        'label' => 'Configuration',
+                        'label' => 'Configuration Générale',
                         'route' => 'system.config',
                         'icon' => 'fas fa-sliders-h'
                     ],
@@ -121,6 +210,11 @@ class DashboardController extends Controller
                         'label' => 'Base de Données',
                         'route' => 'system.database',
                         'icon' => 'fas fa-database'
+                    ],
+                    [
+                        'label' => 'Serveurs & API',
+                        'route' => 'system.servers',
+                        'icon' => 'fas fa-server'
                     ],
                     [
                         'label' => 'Logs Système',
@@ -132,10 +226,20 @@ class DashboardController extends Controller
                         'route' => 'system.backup',
                         'icon' => 'fas fa-shield-alt'
                     ],
+                    [
+                        'label' => 'Sécurité',
+                        'route' => 'system.security',
+                        'icon' => 'fas fa-lock'
+                    ],
+                    [
+                        'label' => 'Maintenance',
+                        'route' => 'system.maintenance',
+                        'icon' => 'fas fa-tools'
+                    ],
                 ],
             ],
             [
-                'label' => 'Notifications',
+                'label' => 'Notifications & Alertes',
                 'icon' => 'fas fa-bell',
                 'route' => 'notifications.index',
                 'children' => [
@@ -150,9 +254,46 @@ class DashboardController extends Controller
                         'icon' => 'fas fa-bullhorn'
                     ],
                     [
+                        'label' => 'Notifications Push',
+                        'route' => 'notifications.push',
+                        'icon' => 'fas fa-mobile-alt'
+                    ],
+                    [
+                        'label' => 'Email Templates',
+                        'route' => 'notifications.email',
+                        'icon' => 'fas fa-envelope-open-text'
+                    ],
+                    [
                         'label' => 'Historique',
                         'route' => 'notifications.history',
                         'icon' => 'fas fa-history'
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Outils & Utilitaires',
+                'icon' => 'fas fa-toolbox',
+                'route' => 'tools.index',
+                'children' => [
+                    [
+                        'label' => 'Calculateurs',
+                        'route' => 'tools.calculators',
+                        'icon' => 'fas fa-calculator'
+                    ],
+                    [
+                        'label' => 'Convertisseurs',
+                        'route' => 'tools.converters',
+                        'icon' => 'fas fa-exchange-alt'
+                    ],
+                    [
+                        'label' => 'Générateurs',
+                        'route' => 'tools.generators',
+                        'icon' => 'fas fa-magic'
+                    ],
+                    [
+                        'label' => 'Import/Export',
+                        'route' => 'tools.import',
+                        'icon' => 'fas fa-file-import'
                     ],
                 ],
             ],
