@@ -32,9 +32,53 @@ class DashboardController extends Controller
                 ],
             ],
             [
+                'label' => 'Gestion de Contenu',
+                'icon' => 'fas fa-file-alt',
+                'route' => 'content.index',
+                'children' => [
+                    [
+                        'label' => 'Tous les Documents',
+                        'route' => 'documents.index',
+                        'icon' => 'fas fa-file-pdf'
+                    ],
+                    [
+                        'label' => 'Nouveau Document',
+                        'route' => 'documents.create',
+                        'icon' => 'fas fa-plus-circle'
+                    ],
+                    [
+                        'label' => 'Catégories',
+                        'route' => 'categories.index',
+                        'icon' => 'fas fa-tags'
+                    ],
+                    [
+                        'label' => 'Archives',
+                        'route' => 'documents.archives',
+                        'icon' => 'fas fa-archive'
+                    ],
+                ],
+            ],
+            [
                 'label' => 'Rapports',
                 'icon' => 'fas fa-chart-bar',
                 'route' => 'reports.index',
+                'children' => [
+                    [
+                        'label' => 'Rapport Mensuel',
+                        'route' => 'reports.monthly',
+                        'icon' => 'fas fa-calendar-alt'
+                    ],
+                    [
+                        'label' => 'Statistiques',
+                        'route' => 'reports.statistics',
+                        'icon' => 'fas fa-chart-line'
+                    ],
+                    [
+                        'label' => 'Export de Données',
+                        'route' => 'reports.export',
+                        'icon' => 'fas fa-download'
+                    ],
+                ],
             ],
             [
                 'label' => 'Gestion des Scripts',
@@ -59,6 +103,55 @@ class DashboardController extends Controller
                     [
                         'label' => 'Historique',
                         'route' => 'scripts.history',
+                        'icon' => 'fas fa-history'
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Administration Système',
+                'icon' => 'fas fa-cogs',
+                'route' => 'system.index',
+                'children' => [
+                    [
+                        'label' => 'Configuration',
+                        'route' => 'system.config',
+                        'icon' => 'fas fa-sliders-h'
+                    ],
+                    [
+                        'label' => 'Base de Données',
+                        'route' => 'system.database',
+                        'icon' => 'fas fa-database'
+                    ],
+                    [
+                        'label' => 'Logs Système',
+                        'route' => 'system.logs',
+                        'icon' => 'fas fa-file-medical-alt'
+                    ],
+                    [
+                        'label' => 'Sauvegardes',
+                        'route' => 'system.backup',
+                        'icon' => 'fas fa-shield-alt'
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Notifications',
+                'icon' => 'fas fa-bell',
+                'route' => 'notifications.index',
+                'children' => [
+                    [
+                        'label' => 'Toutes les Notifications',
+                        'route' => 'notifications.index',
+                        'icon' => 'fas fa-inbox'
+                    ],
+                    [
+                        'label' => 'Créer une Notification',
+                        'route' => 'notifications.create',
+                        'icon' => 'fas fa-bullhorn'
+                    ],
+                    [
+                        'label' => 'Historique',
+                        'route' => 'notifications.history',
                         'icon' => 'fas fa-history'
                     ],
                 ],
