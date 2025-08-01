@@ -271,6 +271,38 @@ class DashboardController extends Controller
                 ],
             ],
             [
+                'label' => 'Formations',
+                'icon' => 'fas fa-graduation-cap',
+                'route' => 'formations.index',
+                'children' => [
+                    [
+                        'label' => 'Toutes les Formations',
+                        'route' => 'formations.index',
+                        'icon' => 'fas fa-list'
+                    ],
+                    [
+                        'label' => 'Nouvelle Formation',
+                        'route' => 'formations.create',
+                        'icon' => 'fas fa-plus-circle'
+                    ],
+                    [
+                        'label' => 'Participants',
+                        'route' => 'formations.participants',
+                        'icon' => 'fas fa-users'
+                    ],
+                    [
+                        'label' => 'Certificats',
+                        'route' => 'formations.certificates',
+                        'icon' => 'fas fa-certificate'
+                    ],
+                    [
+                        'label' => 'Évaluations',
+                        'route' => 'formations.evaluations',
+                        'icon' => 'fas fa-star'
+                    ],
+                ],
+            ],
+            [
                 'label' => 'Outils & Utilitaires',
                 'icon' => 'fas fa-toolbox',
                 'route' => 'tools.index',
