@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class EditeurDashboardController extends Controller
 {
     public function index()
     {
@@ -12,29 +12,7 @@ class DashboardController extends Controller
             [
                 'label' => 'Tableau de bord',
                 'icon' => 'fas fa-tachometer-alt',
-                'route' => 'dashboard',
-            ],
-            [
-                'label' => 'Utilisateurs',
-                'icon' => 'fas fa-users',
-                'route' => 'users.index',
-                'children' => [
-                    [
-                        'label' => 'Tous les Utilisateurs',
-                        'route' => 'users.index',
-                        'icon' => 'fas fa-list'
-                    ],
-                    [
-                        'label' => 'Ajout Utilisateur',
-                        'route' => 'users.create',
-                        'icon' => 'fas fa-user-plus'
-                    ],
-                ],
-            ],
-            [
-                'label' => 'Rapports',
-                'icon' => 'fas fa-chart-bar',
-                'route' => 'reports.index',
+                'route' => 'editeur.dashboard',
             ],
             [
                 'label' => 'Gestion des Scripts',
@@ -64,12 +42,22 @@ class DashboardController extends Controller
                 ],
             ],
             [
+                'label' => 'Mes Rapports',
+                'icon' => 'fas fa-chart-bar',
+                'route' => 'editeur.reports',
+            ],
+            [
+                'label' => 'Mon Profil',
+                'icon' => 'fas fa-user-edit',
+                'route' => 'editeur.profile',
+            ],
+            [
                 'label' => 'Déconnexion',
                 'icon' => 'fas fa-sign-out-alt',
                 'action' => 'logout',
             ],
         ];
 
-        return view('dashboard', compact('menuItems'));
+        return view('editeurDashboard', compact('menuItems'));
     }
 }

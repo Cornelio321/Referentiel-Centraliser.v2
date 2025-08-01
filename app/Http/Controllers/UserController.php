@@ -101,7 +101,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'role' => 'required|in:super admin,admin,editeur,lecteur', // Correction: editeur au lieu de éditeur
+            'role' => 'required|in:admin,editeur,lecteur', // Correction: editeur au lieu de éditeur
         ]);
 
         $oldData = $user->only(['name', 'email', 'role']);

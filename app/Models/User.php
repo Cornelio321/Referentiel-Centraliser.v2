@@ -19,6 +19,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'password_changed',
     ];
 
     /**
@@ -38,5 +39,47 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Relations
+    public function scripts()
+    {
+        return $this->hasMany(Script::class, 'created_by');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function scriptViews()
+    {
+        return $this->hasMany(ScriptView::class);
+    }
+
+    // Méthodes pour vérifier les rôles
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isEditeur()
+    {
+        return $this->role === 'editeur';
+    }
+
+    public function isLecteur()
+    {
+        return $this->role === 'lecteur';
+    }
+
+    public function isDSI()
+    {
+        return in_array($this->role, ['admin', 'editeur']);
+    }
+
+    public function isDTD()
+    {
+        return $this->role === 'lecteur';
     }
 }

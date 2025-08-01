@@ -88,7 +88,7 @@
                                         </span>
                                     </td>
                                     <td class="py-4 px-4 text-center">
-                                        @if(strtolower($user->role) !== 'super admin')
+                                        @if(strtolower($user->role) !== 'admin')
                                             <div class="btn-group" role="group">
                                                 <a href="{{ route('utilisateurs.edit', $user->id) }}"
                                                 class="btn btn-outline-warning btn-sm rounded-pill me-2 px-3">

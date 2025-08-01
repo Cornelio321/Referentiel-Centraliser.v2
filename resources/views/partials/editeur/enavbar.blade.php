@@ -1,13 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-custom ps-3" style="margin-left: 250px;">
     <div class="container-fluid">
-        <span class="navbar-brand fw-bold">
-            @if(Auth::user()->isAdmin())
-                <span class="text-danger">{{ ucfirst(auth()->user()->role ?? 'Utilisateur') }} – {{ auth()->user()->name ?? 'Nom inconnu' }}</span>
-            @elseif(Auth::user()->isEditeur())
-                <span class="text-primary">{{ ucfirst(auth()->user()->role ?? 'Utilisateur') }} – {{ auth()->user()->name ?? 'Nom inconnu' }}</span>
-            @else
-                <span class="text-success">{{ ucfirst(auth()->user()->role ?? 'Utilisateur') }} – {{ auth()->user()->name ?? 'Nom inconnu' }}</span>
-            @endif
+        <span class="navbar-brand fw-bold text-primary">
+            Éditeur – {{ auth()->user()->name ?? 'Nom inconnu' }}
         </span>
 
         <ul class="navbar-nav ms-auto me-4">
@@ -35,64 +29,32 @@
         </ul>
     </div>
 </nav>
-  <style>
+
+<style>
     .navbar-custom {
-    @if(Auth::user()->isAdmin())
-        background: linear-gradient(135deg, #ffcdd2, #ef9a9a) !important;
-        border-bottom: 4px solid #dc3545;
-        box-shadow: 0 2px 10px rgba(220, 53, 69, 0.2);
-    @elseif(Auth::user()->isEditeur())
         background: linear-gradient(135deg, #e3f2fd, #bbdefb) !important;
         border-bottom: 4px solid #2196f3;
         box-shadow: 0 2px 10px rgba(33, 150, 243, 0.2);
-    @else
-        background: linear-gradient(135deg, #e8f5e8, #c8e6c9) !important;
-        border-bottom: 4px solid #28a745;
-        box-shadow: 0 2px 10px rgba(40, 167, 69, 0.2);
-    @endif
-    height: 70px;
-}
+        height: 70px;
+    }
 
-.navbar-custom .navbar-brand {
-    font-size: 1.2rem;
-    @if(Auth::user()->isAdmin())
-        color: #dc3545;
-        text-shadow: 1px 1px rgba(255, 255, 255, 0.3);
-    @elseif(Auth::user()->isEditeur())
+    .navbar-custom .navbar-brand {
+        font-size: 1.2rem;
         color: #1976d2;
         text-shadow: 1px 1px rgba(255, 255, 255, 0.3);
-    @else
-        color: #1e7e34;
-        text-shadow: 1px 1px rgba(255, 255, 255, 0.3);
-    @endif
-}
+    }
 
-.navbar-custom .nav-link {
-    font-weight: 500;
-}
+    .navbar-custom .nav-link {
+        font-weight: 500;
+    }
 
-.navbar-custom .dropdown-menu {
-    @if(Auth::user()->isAdmin())
-        border: 1px solid #dc3545;
-    @elseif(Auth::user()->isEditeur())
+    .navbar-custom .dropdown-menu {
         border: 1px solid #2196f3;
-    @else
-        border: 1px solid #28a745;
-    @endif
-    border-radius: 8px;
-}
+        border-radius: 8px;
+    }
 
-.navbar-custom .dropdown-item:hover {
-    @if(Auth::user()->isAdmin())
-        background-color: rgba(220, 53, 69, 0.1);
-        color: #dc3545;
-    @elseif(Auth::user()->isEditeur())
+    .navbar-custom .dropdown-item:hover {
         background-color: rgba(33, 150, 243, 0.1);
         color: #2196f3;
-    @else
-        background-color: rgba(40, 167, 69, 0.1);
-        color: #28a745;
-    @endif
-}
-
-  </style>
+    }
+</style>

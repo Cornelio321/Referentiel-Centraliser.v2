@@ -23,7 +23,25 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+
+            $user = Auth::user();
+
+            // Vérifier si l'utilisateur doit changer son mot de passe
+            if (!$user->password_changed) {
+                return redirect()->route('password.change.form')->with('warning', 'Vous devez changer votre mot de passe avant de continuer.');
+            }
+
+            // Rediriger selon le rôle
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('dashboard');
+                case 'editeur':
+                    return redirect()->intended('editeur.dashboard');
+                case 'lecteur':
+                    return redirect()->intended('lecteur.dashboard');
+                default:
+                    return redirect()->intended('lecteur.dashboard');
+            }
         }
 
         return back()->withErrors([

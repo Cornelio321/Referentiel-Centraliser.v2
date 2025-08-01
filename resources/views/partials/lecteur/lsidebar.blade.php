@@ -3,19 +3,11 @@
     <div class="logo-container mb-4 mx-auto">
         <div class="logo-circle">
             <img src="{{ asset('images/ceet_officiel_logo-removebg-preview.png') }}" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <i class="fas fa-building fa-3x text-danger" style="display: none;"></i>
+            <i class="fas fa-building fa-3x text-success" style="display: none;"></i>
         </div>
     </div>
 
-    <h4 class="text-center mb-4 fw-bold">
-        @if(Auth::user()->isAdmin())
-            Admin Panel
-        @elseif(Auth::user()->isEditeur())
-            Éditeur Panel
-        @else
-            Lecteur Panel
-        @endif
-    </h4>
+    <h4 class="text-center mb-4 fw-bold">Lecteur Panel</h4>
 
     <ul class="nav flex-column">
         @foreach ($menuItems as $item)
@@ -46,7 +38,7 @@
                     </div>
                 </li>
             @elseif(isset($item['action']) && $item['action'] === 'logout')
-                <hr class="my-3" style="border-color: #dc3545;">
+                <hr class="my-3" style="border-color: #28a745;">
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -75,19 +67,9 @@
 
 <style>
     .sidebar-custom {
-    @if(Auth::user()->isAdmin())
-        background: linear-gradient(135deg, #ffcdd2, #ef9a9a) !important;
-        border-right: 4px solid #dc3545;
-        box-shadow: 4px 0 15px rgba(220, 53, 69, 0.2);
-    @elseif(Auth::user()->isEditeur())
-        background: linear-gradient(135deg, #e3f2fd, #bbdefb) !important;
-        border-right: 4px solid #2196f3;
-        box-shadow: 4px 0 15px rgba(33, 150, 243, 0.2);
-    @else
-        background: linear-gradient(135deg, #e8f5e8, #c8e6c9) !important;
-        border-right: 4px solid #28a745;
-        box-shadow: 4px 0 15px rgba(40, 167, 69, 0.2);
-    @endif
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9) !important;
+    border-right: 4px solid #28a745;
+    box-shadow: 4px 0 15px rgba(40, 167, 69, 0.2);
     position: relative;
 }
 
@@ -99,22 +81,14 @@
     width: 100px;
     height: 100px;
     background: white;
-    @if(Auth::user()->isAdmin())
-        border: 4px solid #dc3545;
-        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
-    @elseif(Auth::user()->isEditeur())
-        border: 4px solid #2196f3;
-        box-shadow: 0 4px 10px rgba(33, 150, 243, 0.2);
-    @else
-        border: 4px solid #28a745;
-        box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
-    @endif
+    border: 4px solid #28a745;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
 }
 
 .logo-circle img {
@@ -125,19 +99,9 @@
 }
 
 .sidebar-custom h4 {
-    @if(Auth::user()->isAdmin())
-        color: #c82333;
-        text-shadow: 1px 1px 2px rgba(220, 53, 69, 0.2);
-        border-bottom: 2px solid #dc3545;
-    @elseif(Auth::user()->isEditeur())
-        color: #1976d2;
-        text-shadow: 1px 1px 2px rgba(33, 150, 243, 0.2);
-        border-bottom: 2px solid #2196f3;
-    @else
-        color: #1e7e34;
-        text-shadow: 1px 1px 2px rgba(40, 167, 69, 0.2);
-        border-bottom: 2px solid #28a745;
-    @endif
+    color: #1e7e34;
+    text-shadow: 1px 1px 2px rgba(40, 167, 69, 0.2);
+    border-bottom: 2px solid #28a745;
     padding-bottom: 10px;
 }
 
@@ -153,65 +117,41 @@
 }
 
 .sidebar-custom .nav-link i {
-    @if(Auth::user()->isAdmin())
-        color: #dc3545;
-    @elseif(Auth::user()->isEditeur())
-        color: #2196f3;
-    @else
-        color: #28a745;
-    @endif
+    color: #28a745;
     margin-right: 10px;
     width: 20px;
     text-align: center;
 }
 
 .sidebar-custom .nav-link:hover {
-    @if(Auth::user()->isAdmin())
-        background-color: rgba(220, 53, 69, 0.15);
-        border-left: 4px solid #dc3545;
-    @elseif(Auth::user()->isEditeur())
-        background-color: rgba(33, 150, 243, 0.15);
-        border-left: 4px solid #2196f3;
-    @else
-        background-color: rgba(40, 167, 69, 0.15);
-        border-left: 4px solid #28a745;
-    @endif
+    background-color: rgba(40, 167, 69, 0.15);
+    border-left: 4px solid #28a745;
     transform: translateX(5px);
 }
 
 .sidebar-custom .nav-link.active {
-    @if(Auth::user()->isAdmin())
-        background-color: rgba(220, 53, 69, 0.2);
-        border-left: 5px solid #dc3545;
-        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
-    @elseif(Auth::user()->isEditeur())
-        background-color: rgba(33, 150, 243, 0.2);
-        border-left: 5px solid #2196f3;
-        box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
-    @else
-        background-color: rgba(40, 167, 69, 0.2);
-        border-left: 5px solid #28a745;
-        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
-    @endif
+    background-color: rgba(40, 167, 69, 0.2);
     font-weight: bold;
+    border-left: 5px solid #28a745;
     color: #000;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
 }
 
 .collapse .nav-link {
-    background-color: rgba(255, 235, 59, 0.2);
+    background-color: rgba(232, 245, 232, 0.2);
     margin-left: 10px;
     margin-right: 5px;
-    border-left: 3px solid #dc3545;
+    border-left: 3px solid #28a745;
     padding-left: 20px;
 }
 
 .collapse .nav-link:hover {
-    background-color: rgba(220, 53, 69, 0.1);
+    background-color: rgba(40, 167, 69, 0.1);
 }
 
 .logout-btn:hover {
-    background-color: rgba(220, 53, 69, 0.2);
-    border-left: 4px solid #dc3545;
+    background-color: rgba(40, 167, 69, 0.2);
+    border-left: 4px solid #28a745;
 }
 
 [data-bs-toggle="collapse"] .fa-chevron-down {
@@ -221,5 +161,4 @@
 [data-bs-toggle="collapse"][aria-expanded="true"] .fa-chevron-down {
     transform: rotate(180deg);
 }
-
 </style>

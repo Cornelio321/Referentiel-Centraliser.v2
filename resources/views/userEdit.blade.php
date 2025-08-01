@@ -69,7 +69,6 @@
                             <div class="col-md-6">
                                 <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required>
                                     <option value="">Sélectionner un rôle</option>
-                                     <option value="super admin" {{ old('role') == 'super admin' ? 'selected' : '' }}>Super Administrateur</option>
                                     <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Administrateur</option>
                                     <option value="editeur" {{ old('role') == 'editeur' ? 'selected' : '' }}>Éditeur</option>
                                     <option value="lecteur" {{ old('role') == 'lecteur' ? 'selected' : '' }}>Lecteur</option>
